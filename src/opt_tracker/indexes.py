@@ -1,12 +1,13 @@
 from typing import Union
-from enum import Enum
+from enum import Enum, unique
 from datetime import datetime
 
 
+@unique
 class Index(Enum):
     HEADER = 1
-    BEGIN = 1
-    END = 1
+    BEGIN = 2
+    END = 3
 
 
 def int_index_to_str(idx: int) -> str:
@@ -46,3 +47,14 @@ def index_to_str(index: Union[int, datetime, Index]) -> str:
     else:
         raise TypeError(f'Type of index {type(index)} not valid for Tracker.')
     return index_str
+
+
+def str_to_index(index_str: str) -> Union[int, datetime, Index]:
+    if index_str.startswith('int'):
+        return str_to_int_index(index_str)
+    if index_str.startswith('ts'):
+        return str_to_datetime_index(index_str)
+    for ind in Index:
+        if index_str == ind.name:
+            return ind
+    raise ValueError(f'Could not parse index {index_str}')
