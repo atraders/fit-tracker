@@ -34,3 +34,14 @@ def str_to_datetime_index(idx_str: str) -> datetime:
     assert float_str.isnumeric()
     assert float(float_str) >= 0
     return datetime.fromtimestamp(float(float_str))
+
+
+def index_to_str(idx: Union[int, datetime, Index]):
+    if isinstance(index, int):
+        index_str = indexes.int_index_to_str(index)
+    elif isinstance(index, datetime):
+        index_str = indexes.datetime_index_to_str(index)
+    elif isinstance(index, Index):
+        index_str = str(index.name)
+    else:
+        raise TypeError(f'Type of index {type(index)} not valid for Tracker.')
