@@ -11,7 +11,7 @@ class Index(Enum):
 
 
 def int_index_to_str(idx: int) -> str:
-    assert isinstance(idx, int)
+    assert isinstance(idx, int) and not isinstance(idx, bool)
     return f'int{idx}'
 
 
