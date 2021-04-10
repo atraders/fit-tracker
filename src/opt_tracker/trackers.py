@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Dict, Optional, Union
+from typing import Dict, Optional, Union, Any
 from datetime import datetime
 import json
 
@@ -10,7 +10,7 @@ LOG_SEP = '##'
 
 def jsonize(dictionary: Optional[Dict] = None, **kwargs) -> str:
     if dictionary is None:
-        logganda = dict()
+        logganda: Dict[Any, Any] = dict()
     logganda.update(**kwargs)
     return json.dumps(logganda)
 
@@ -24,7 +24,7 @@ class FileTracker:
             log.write('-- START -- ')
 
     def _write_log_line(self, index_str: str, json_str: str) -> None:
-        log_datetime = datetime.now().strftime()
+        log_datetime = datetime.now().strftime(fmt=r'%Y-%m-%d-%H:%M')
         with open(self.log_file, 'a+') as log:
             log.write(LOG_SEP.join([log_datetime, index_str, json_str]))
 
