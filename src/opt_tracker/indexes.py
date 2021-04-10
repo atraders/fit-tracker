@@ -1,4 +1,4 @@
-
+from typing import Union
 from enum import Enum
 from datetime import datetime
 
@@ -18,8 +18,8 @@ def str_to_int_index(idx_str: str) -> int:
     assert isinstance(idx_str, str)
     assert idx_str.startswith('int')
     int_str = idx_str.replace('int', '')
-    assert idx_str.isnumeric()
-    return int(idx_str)
+    assert int_str.isnumeric()
+    return int(int_str)
 
 
 def datetime_index_to_str(dt: datetime) -> str:
@@ -36,12 +36,13 @@ def str_to_datetime_index(idx_str: str) -> datetime:
     return datetime.fromtimestamp(float(float_str))
 
 
-def index_to_str(idx: Union[int, datetime, Index]):
+def index_to_str(index: Union[int, datetime, Index]) -> str:
     if isinstance(index, int):
-        index_str = indexes.int_index_to_str(index)
+        index_str = int_index_to_str(index)
     elif isinstance(index, datetime):
-        index_str = indexes.datetime_index_to_str(index)
+        index_str = datetime_index_to_str(index)
     elif isinstance(index, Index):
         index_str = str(index.name)
     else:
         raise TypeError(f'Type of index {type(index)} not valid for Tracker.')
+    return index_str
