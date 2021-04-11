@@ -36,7 +36,7 @@ def test_datetime_index_to_str():
 
 
 def test_str_to_datetime_index():
-    assert indexes.str_to_datetime_index('ts1607727600.0') == datetime.fromtimestamp(1607727600.0, tz=timezone.utc)
+    assert indexes.str_to_datetime_index('ts1607727600.0') == datetime.fromtimestamp(1607727600.0)
     with pytest.raises(AssertionError):
         indexes.str_to_int_index('dt101010.0')
     with pytest.raises(AssertionError):
