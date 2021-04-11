@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 
 import pytest
 
@@ -31,12 +31,12 @@ def test_datetime_index_to_str():
         with pytest.raises(TypeError):
             indexes.datetime_index_to_str(malformed_index)
 
-    date = datetime.strptime('2020-12-12', '%Y-%m-%d')
+    date = datetime.fromtimestamp(1607727600.0, tz=timezone.utc)
     assert indexes.datetime_index_to_str(date) == 'ts1607727600.0'
 
 
 def test_str_to_datetime_index():
-    assert indexes.str_to_datetime_index('ts1607727600.0') == datetime.strptime('2020-12-12', '%Y-%m-%d')
+    assert indexes.str_to_datetime_index('ts1607727600.0') == datetime.fromtimestamp(1607727600.0, tz=timezone.utc)
     with pytest.raises(AssertionError):
         indexes.str_to_int_index('dt101010.0')
     with pytest.raises(AssertionError):
