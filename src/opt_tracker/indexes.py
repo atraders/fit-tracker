@@ -11,7 +11,8 @@ class Index(Enum):
 
 
 def int_index_to_str(idx: int) -> str:
-    assert isinstance(idx, int) and not isinstance(idx, bool)
+    if not (isinstance(idx, int) and not isinstance(idx, bool)):
+        raise TypeError
     return f'int{idx}'
 
 
@@ -19,12 +20,13 @@ def str_to_int_index(idx_str: str) -> int:
     assert isinstance(idx_str, str)
     assert idx_str.startswith('int')
     int_str = idx_str.replace('int', '')
-    assert int_str.isnumeric()
+    assert int_str.lstrip('-').isnumeric()
     return int(int_str)
 
 
 def datetime_index_to_str(dt: datetime) -> str:
-    assert isinstance(dt, datetime)
+    if not isinstance(dt, datetime):
+        raise TypeError
     return f'ts{dt.timestamp()}'
 
 
@@ -32,8 +34,7 @@ def str_to_datetime_index(idx_str: str) -> datetime:
     assert isinstance(idx_str, str)
     assert idx_str.startswith('ts')
     float_str = idx_str.replace('ts', '')
-    assert float_str.isnumeric()
-    assert float(float_str) >= 0
+    assert float_str.replace('.', '').isnumeric(), f'{float_str} does not look like a float'
     return datetime.fromtimestamp(float(float_str))
 
 
