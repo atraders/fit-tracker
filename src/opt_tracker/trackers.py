@@ -11,9 +11,11 @@ LOG_DATE_FORMAT = r'%Y-%m-%d-%H:%M'
 
 def unite_kwargs(dictionary: Optional[Dict] = None, **kwargs) -> Dict[str, Any]:
     if dictionary is None:
-        dictionary: Dict[Any, Any] = dict()
-    dictionary.update(**kwargs)
-    return dictionary
+        full_dictionary: Dict[Any, Any] = dict()
+    else:
+        full_dictionary = dictionary
+    full_dictionary.update(**kwargs)
+    return full_dictionary
 
 
 class FileTracker:
