@@ -1,0 +1,6 @@
+2021-04-12-12:22 - BEGIN - {"init": "FileTracker"}
+2021-04-12-12:22 - BEGIN - {"input": "dictionary", "welwala": 1}
+2021-04-12-12:22 - BEGIN - {"keywordargument": 1.1}
+2021-04-12-12:23 - int0 - {"first_event": "test", "otherkey": true}
+2021-04-12-12:23 - int1 - {"second_event": "test2", "otherkey": false}
+2021-04-12-12:24 - END - {"allgood": true}
