@@ -26,6 +26,13 @@ def test_str_to_int_index():
         indexes.str_to_int_index('int1e10')
 
 
+def test_int_index_inversion():
+    for num in [-10, 0, 1, 1000]:
+        assert indexes.str_to_int_index(indexes.int_index_to_str(num)) == num
+    for num_str in ['int0', 'int102', 'int-1000']:
+        assert indexes.int_index_to_str(indexes.str_to_int_index(num_str)) == num_str
+
+
 def test_datetime_index_to_str():
     for malformed_index in [1.1, 'wrong', False, 10]:
         with pytest.raises(TypeError):
@@ -41,6 +48,14 @@ def test_str_to_datetime_index():
         indexes.str_to_int_index('dt101010.0')
     with pytest.raises(AssertionError):
         indexes.str_to_int_index('ts1io')
+
+
+def test_datetime_index_inversion():
+    for timestamp in [1607727600.0, 0.0]:
+        date = datetime.fromtimestamp(timestamp)
+        assert indexes.str_to_datetime_index(indexes.datetime_index_to_str(date)) == date
+    for ts_str in ['ts100.0', 'ts486252000.0']:
+        assert indexes.datetime_index_to_str(indexes.str_to_datetime_index(ts_str)) == ts_str
 
 
 def test_index_to_str():
