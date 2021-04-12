@@ -42,9 +42,21 @@ def test_str_to_datetime_index():
     with pytest.raises(AssertionError):
         indexes.str_to_int_index('ts1io')
 
+
 def test_index_to_str():
-    pass
+    assert indexes.index_to_str(100) == 'int100'
+    assert indexes.index_to_str(0) == 'int0'
+    date = datetime.fromtimestamp(1607727600.0, tz=timezone.utc)
+    assert indexes.index_to_str(date) == 'ts1607727600.0'
+    assert indexes.index_to_str(indexes.Index.HEADER) == 'HEADER'
+    for malformed_index in [1.0, True, 'invalid', object()]:
+        with pytest.raises(TypeError):
+            indexes.index_to_str(malformed_index)
 
 
 def test_str_to_index():
-    pass
+    assert indexes.str_to_index('int100') == 100
+    assert indexes.str_to_index('int0') == 0
+    date = datetime.fromtimestamp(1607727600.0)
+    assert indexes.str_to_index('ts1607727600.0') == date
+    assert indexes.str_to_index('HEADER') == indexes.Index.HEADER

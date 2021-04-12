@@ -17,7 +17,8 @@ def int_index_to_str(idx: int) -> str:
 
 
 def str_to_int_index(idx_str: str) -> int:
-    assert isinstance(idx_str, str)
+    if not isinstance(idx_str, str):
+        raise TypeError
     assert idx_str.startswith('int')
     int_str = idx_str.replace('int', '')
     assert int_str.lstrip('-').isnumeric()
@@ -31,7 +32,8 @@ def datetime_index_to_str(dt: datetime) -> str:
 
 
 def str_to_datetime_index(idx_str: str) -> datetime:
-    assert isinstance(idx_str, str)
+    if not isinstance(idx_str, str):
+        raise TypeError
     assert idx_str.startswith('ts')
     float_str = idx_str.replace('ts', '')
     assert float_str.replace('.', '').isnumeric(), f'{float_str} does not look like a float'
