@@ -51,7 +51,7 @@ def test_str_to_datetime_index():
 
 
 def test_datetime_index_inversion():
-    for timestamp in [1607727600.0, 0.0]:
+    for timestamp in [1607727600.0, 1000.0]:
         date = datetime.fromtimestamp(timestamp)
         assert indexes.str_to_datetime_index(indexes.datetime_index_to_str(date)) == date
     for ts_str in ['ts100.0', 'ts486252000.0']:
