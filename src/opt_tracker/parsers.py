@@ -3,8 +3,8 @@ from pathlib import Path
 from datetime import datetime
 import json
 
-from .trackers import LOG_SEP, LOG_DATE_FORMAT
-from .indexes import str_to_index, Index
+from opt_tracker.trackers import LOG_SEP, LOG_DATE_FORMAT
+from opt_tracker.indexes import str_to_index, Index
 
 
 def parse_row(row: str) -> Tuple[datetime, Union[Index, datetime, int], Dict[str, Any]]:
