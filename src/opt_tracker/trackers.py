@@ -24,7 +24,7 @@ class FileTracker:
         self.log_file = Path(log_file)
         self.log_file.parent.mkdir(parents=True, exist_ok=True)
         self.write_log_line(
-            indexes.index_to_str(indexes.Index.BEGIN),
+            indexes.index_to_str(indexes.Index.HEADER),
             {'init': self.__class__.__name__}
         )
 
