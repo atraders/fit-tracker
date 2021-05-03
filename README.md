@@ -1,4 +1,4 @@
 # Fit Tracker
 
-A lightweight package to track training of statistical/ML models.
+A lightweight experiment tracker for numerical optimization problems, such as fitting statistical/ML models or solving discrete optimization problems.
  
