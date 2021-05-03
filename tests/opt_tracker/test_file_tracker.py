@@ -1,7 +1,7 @@
 from pathlib import Path
 from uuid import uuid4
 
-from opt_tracker.trackers import FileTracker
+from fit_tracker.trackers import FileTracker
 
 
 def remove_log_time(log_content: str) -> str:

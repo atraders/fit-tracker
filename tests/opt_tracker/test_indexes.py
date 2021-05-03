@@ -2,7 +2,7 @@ from datetime import datetime, timezone
 
 import pytest
 
-from opt_tracker import indexes
+from fit_tracker import indexes
 
 
 def test_int_index_to_str():

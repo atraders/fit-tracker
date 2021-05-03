@@ -1,6 +1,6 @@
-from typing import Union
-from enum import Enum, unique
 from datetime import datetime
+from enum import Enum, unique
+from typing import Union
 
 
 @unique

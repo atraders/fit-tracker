@@ -1,10 +1,10 @@
-from typing import Tuple, Union, Dict, Any, List
-from pathlib import Path
-from datetime import datetime
 import json
+from datetime import datetime
+from pathlib import Path
+from typing import Any, Dict, List, Tuple, Union
 
-from opt_tracker.trackers import LOG_SEP, LOG_DATE_FORMAT
-from opt_tracker.indexes import str_to_index, Index
+from fit_tracker.indexes import Index, str_to_index
+from fit_tracker.trackers import LOG_DATE_FORMAT, LOG_SEP
 
 Record = Tuple[datetime, Union[Index, datetime, int], Dict[str, Any]]
 
