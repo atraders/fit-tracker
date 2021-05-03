@@ -1,7 +1,7 @@
-from pathlib import Path
-from typing import Dict, Optional, Union, Any
-from datetime import datetime
 import json
+from datetime import datetime
+from pathlib import Path
+from typing import Any, Dict, Optional, Union
 
 from fit_tracker import indexes
 

@@ -23,6 +23,7 @@ jobs:
         pip install --upgrade '.[dev]'
     - name: lint
       run: |
+        isort --check
         pylint src
     - name: mypy
       run: mypy src
