@@ -3,8 +3,8 @@ from pathlib import Path
 from datetime import datetime
 import json
 
-from opt_tracker.trackers import LOG_SEP, LOG_DATE_FORMAT
-from opt_tracker.indexes import str_to_index, Index
+from fit_tracker.trackers import LOG_SEP, LOG_DATE_FORMAT
+from fit_tracker.indexes import str_to_index, Index
 
 Record = Tuple[datetime, Union[Index, datetime, int], Dict[str, Any]]
 

@@ -1,8 +1,8 @@
 import datetime
 from pathlib import Path
 
-from opt_tracker import parsers
-from opt_tracker.indexes import Index
+from fit_tracker import parsers
+from fit_tracker.indexes import Index
 
 
 def test_parse_log_file():
