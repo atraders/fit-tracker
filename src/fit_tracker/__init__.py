@@ -1,1 +1,1 @@
-from .trackers import FileTracker
+from fit_tracker.trackers import FileTracker
