@@ -13,6 +13,7 @@ jobs:
       run:
         echo $EVENT_NAME
     - name: build
+      if: ${{ github.event_name == push }}
       run: |
         python setup.py sdist bdist_wheel
         twine check dist/*
