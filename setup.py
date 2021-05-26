@@ -1,4 +1,6 @@
 import pathlib
+import os
+import subprocess
 
 from setuptools import find_packages, setup
 
@@ -7,9 +9,28 @@ with open(here / 'README.md', 'r') as readme:
     long_description = readme.read()
 
 
+def get_latest_tag():
+    os.system('git fetch')
+    return subprocess.check_output(['git', 'describe', '--tags']).decode().strip()
+
+
+def bump_patch(vers):
+    major, minor, patch = vers.split('.')
+    if not patch.isnumeric():
+        return vers
+    bumped_patch = str(int(patch) + 1)
+    return '.'.join([major, minor, bumped_patch])
+
+
+if 'GITHUB_REF' in os.environ:
+    VERSION = os.environ['GITHUB_REF'].split('/')[-1]
+else:
+    VERSION = bump_patch(get_latest_tag())
+
+
 setup(
     name='fit-tracker',
-    version='0.0.1dev',
+    version=VERSION,
     description='A lightweight experiment tracker for numerical optimization problems.',
     long_description=long_description,
     long_description_content_type='text/markdown',

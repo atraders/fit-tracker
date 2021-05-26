@@ -7,7 +7,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        python-version: ['3.6'] # , '3.7', '3.8', '3.9']
+        python-version: ['3.6', '3.7', '3.8', '3.9']
         os: [macos-latest, ubuntu-latest, 'windows-latest']
     steps:
     - uses: actions/checkout@v2
@@ -31,15 +31,13 @@ jobs:
       run: pytest tests
 
   release:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [macos-latest, ubuntu-latest, 'windows-latest']
+    needs: tests
+    runs-on: ubuntu-latest
     steps:
     - name: prep
       env:
         EVENT_NAME: ${{ github.event_name }}
-        REF: ${{ github.ref }}
+        GITHUB_REF: ${{ github.ref }}
       run: |
         echo $EVENT_NAME
         echo $REF
@@ -54,7 +52,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r build-requirements.txt
     - name: build and upload
-      if: ${{ github.event_name == 'push' }}
+      if: ${{ github.event_name == 'release' }}
       env:
         TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
         TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
