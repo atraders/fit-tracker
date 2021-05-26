@@ -1,6 +1,8 @@
 name: New release
 
-on: release
+on:
+  release:
+    types: [released]
 
 jobs:
   tests:
