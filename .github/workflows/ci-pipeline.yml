@@ -49,7 +49,7 @@ jobs:
       env:
         TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
         TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
-        GITHUB_REF: ${{ github.ref }}
+        #GITHUB_REF: ${{ github.ref }}
       run: |
         python setup.py sdist bdist_wheel
         twine check dist/*
