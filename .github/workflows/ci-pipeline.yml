@@ -36,6 +36,11 @@ jobs:
       matrix:
         os: [macos-latest, ubuntu-latest, 'windows-latest']
     steps:
+    - name: prep
+      env:
+        EVENT_NAME: ${{ github.event_name }}
+      run:
+        echo $EVENT_NAME
     - name: build
       if: ${{ github.event_name == 'release' }}
       run: |
