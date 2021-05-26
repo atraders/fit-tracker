@@ -10,7 +10,7 @@ with open(here / 'README.md', 'r') as readme:
 
 
 def get_latest_tag():
-    os.system('git fetch')
+    os.system('git fetch --tags')
     return subprocess.check_output(['git', 'describe', '--tags']).decode().strip()
 
 
