@@ -1,9 +1,11 @@
 name: New release
 
-on: release
+on:
+  release:
+    types: [released]
 
 jobs:
-  tests:
+  publish:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
