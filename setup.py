@@ -4,6 +4,8 @@ import subprocess
 
 from setuptools import find_packages, setup
 
+from setuptools import find_packages, setup
+
 here = pathlib.Path(__file__).parent.resolve()
 with open(here / 'README.md', 'r') as readme:
     long_description = readme.read()
