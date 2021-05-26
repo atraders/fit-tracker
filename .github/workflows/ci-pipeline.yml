@@ -1,4 +1,4 @@
-name: Lint and test on push
+name: Lint, test and deploy
 
 on: [push, release]
 
@@ -38,7 +38,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: '3.6'
         architecture: x64
     - name: install build tools
       run: |
