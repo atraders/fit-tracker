@@ -1,0 +1,19 @@
+name: Test build
+
+on: push
+
+jobs:
+
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: prep
+      env:
+        EVENT_NAME: ${{ github.event_name }}
+      run:
+        echo $EVENT_NAME
+    - name: build
+      if: ${{ github.event_name == "push" }}
+      run: |
+        python setup.py sdist bdist_wheel
+        twine check dist/*
