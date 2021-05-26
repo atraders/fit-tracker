@@ -5,10 +5,9 @@ from setuptools import find_packages, setup
 here = pathlib.Path(__file__).parent.resolve()
 long_description = (here / 'README.md').read_text(encoding='utf-8')
 
-
 setup(
     name='fit-tracker',
-    version='0.0.0dev',
+    version='0.0.1dev',
     description='A lightweight experiment tracker for numerical optimization problems.',
     long_description=long_description,
     long_description_content_type='text/markdown',

@@ -1,6 +1,6 @@
 name: Lint and test on push
 
-on: push
+on: [push, release]
 
 jobs:
   tests:
@@ -29,3 +29,12 @@ jobs:
       run: mypy src
     - name: pytest
       run: pytest tests
+
+  release:
+    runs-on: ${{ matrix.os }}
+    steps:
+    - name: build
+      if: ${{ github.event_name == 'release' }}
+      run: |
+        python setup.py sdist bdist_wheel
+        twine check dist/*
