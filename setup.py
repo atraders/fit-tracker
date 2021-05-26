@@ -22,10 +22,7 @@ def bump_patch(vers):
     return '.'.join([major, minor, bumped_patch])
 
 
-if 'GITHUB_REF' in os.environ:
-    VERSION = os.environ['GITHUB_REF'].split('/')[-1]
-else:
-    VERSION = '0.0.1'  #bump_patch(get_latest_tag())
+VERSION = '0.0.1'  #bump_patch(get_latest_tag())
 
 
 setup(
