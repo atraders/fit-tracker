@@ -53,8 +53,11 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r build-requirements.txt
-    - name: build
+    - name: build and upload
       if: ${{ github.event_name == 'push' }}
+      env:
+        TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
+        TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
       run: |
         python setup.py sdist bdist_wheel
         twine check dist/*
