@@ -33,14 +33,7 @@ jobs:
   release:
     needs: tests
     runs-on: ubuntu-latest
-    steps:
-    - name: prep
-      env:
-        EVENT_NAME: ${{ github.event_name }}
-        GITHUB_REF: ${{ github.ref }}
-      run: |
-        echo $EVENT_NAME
-        echo $REF
+    steps:        
     - uses: actions/checkout@v2
     - name: Set up Python
       uses: actions/setup-python@v2
@@ -56,6 +49,7 @@ jobs:
       env:
         TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
         TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
+        GITHUB_REF: ${{ github.ref }}
       run: |
         python setup.py sdist bdist_wheel
         twine check dist/*
