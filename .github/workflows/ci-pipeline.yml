@@ -1,6 +1,6 @@
 name: Lint and test on push
 
-on: release
+on: [push, release]
 
 jobs:
   tests:
@@ -39,10 +39,12 @@ jobs:
     - name: prep
       env:
         EVENT_NAME: ${{ github.event_name }}
-      run:
+        REF: ${{ github.ref }}
+      run: |
         echo $EVENT_NAME
+        echo $REF
     - name: build
-      if: ${{ github.event_name == 'release' }}
+      if: ${{ github.event_name == 'push' }}
       run: |
         python setup.py sdist bdist_wheel
         twine check dist/*
