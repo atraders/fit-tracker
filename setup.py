@@ -22,7 +22,7 @@ def bump_patch(vers):
     return '.'.join([major, minor, bumped_patch])
 
 
-VERSION = '0.0.1dev'  #bump_patch(get_latest_tag())
+VERSION = get_latest_tag()
 
 
 setup(
