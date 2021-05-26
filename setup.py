@@ -22,7 +22,9 @@ def bump_patch(vers):
     return '.'.join([major, minor, bumped_patch])
 
 
-VERSION = get_latest_tag()
+VERSION = '0.0.0'
+if 'DEPLOY' in os.environ:
+    VERSION = os.environ['GITHUB_REF'].split('/')[-1]
 
 
 setup(
